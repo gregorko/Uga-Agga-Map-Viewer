@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.httpcomponents:httpclient:4.5.7'
+    compile 'com.jgoodies:jgoodies-forms:1.7.2'
+    compile 'com.jgoodies:jgoodies-looks:2.5.3'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    archiveName = "map_viewer.jar"
+    manifest {
+        attributes (
+            'Implementation-Title': 'Uga Agga Map Viewer',
+            'Implementation-Version': '2.0',
+            'Main-Class': 'evolution.mapviewer.Main',
+            'Permissions': 'all-permissions')
+    }
+}
+
+mainClassName = "evolution.mapviewer.Main"
+
+//task copyFiles(type: Copy, dependsOn: [jar]) {
+//    from configurations.runtime
+//    from("build/libs")
+//    into("webstart/lib")
+//    include('*.jar')
+//}
+
+//task signAll(dependsOn: [copyFiles]) << {
+//    new File('webstart/signed').mkdirs()
+//    def libFiles = files { file('webstart/lib').listFiles() }
+//    libFiles.each {
+//        ant.signjar(
+//                destDir: 'webstart/signed',
+//                alias: 'evolution',
+//                jar: it,
+//                keystore: 'src/jnlp/keys/evolution.keys',
+//                storepass: 'evolution',
+//                preservelastmodified: 'true')
+//    }
+//}
